@@ -5,7 +5,7 @@ with ord as (
             store_id,
             subtotal,
             (tax_paid/subtotal)*100 as tax_paid,
-            (order_total/subtotal)*100 as order_total,
+            (order_total/subtotal)*100 as order_total
              from {{source('src','orders')}}
     where order_total<>0
 
