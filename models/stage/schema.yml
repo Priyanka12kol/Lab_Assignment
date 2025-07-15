@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: This table contains customer information
+    columns:
+      - name: id
+        description: This column is primary key of customer table
+        tests:
+          - unique
+          - not_null
+  - name: stg_order_items
+    description: This table contains item information
+    columns:
+      - name: id
+        description: This column is primary key of order_item table
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    description: This table contains order information
+    columns:
+      - name: id
+        description: This column is primary key of orders table
+        tests:
+          - unique
+          - not_null     
+  - name: stg_products
+    description: This table contains products information
+    columns:
+      - name: id
+        description: This column is primary key of products table
+        tests:
+          - unique
+          - not_null
+
+    
