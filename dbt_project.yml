@@ -39,4 +39,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   stage:
     +materialized: table
+  intermediate:
+    +materialized: incremental
     
