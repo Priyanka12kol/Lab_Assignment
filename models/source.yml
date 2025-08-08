@@ -3,11 +3,11 @@ version: 2
 sources: 
   - name: src
     description: This is source name
-    database: JAFFLE_SHOP
-    schema: JSHOP
+    database: JAFFLE
+    schema: RAW
     tables:
       - name: customers
-      - name: items
+      - name: order_items
       - name: orders
         config:
           # source.table.config.freshness overrides source.config.freshness
@@ -20,3 +20,5 @@ sources:
               period: hour        
           loaded_at_field: ordered_at
       - name: products
+      - name: locations
+      - name: supplies

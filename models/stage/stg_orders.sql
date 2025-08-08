@@ -1,6 +1,6 @@
 with ord as (
     select id,
-            customer_id,
+            customer,
             cast (ordered_at as date) as ordered_at,
             store_id,
             subtotal,

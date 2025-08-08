@@ -1,2 +1,2 @@
 
-select * from {{source('src','items')}}
+select * from {{source('src','order_items')}}

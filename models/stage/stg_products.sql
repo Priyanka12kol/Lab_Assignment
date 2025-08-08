@@ -1,10 +1,9 @@
 with prd as (
-        select sku,
+        select id,sku,
         name,
         type,
         price,
-        description,
-        update_at
+        description
         from {{source('src','products')}}
 
 

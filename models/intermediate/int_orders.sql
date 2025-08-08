@@ -1,16 +1,22 @@
-select 
-    o.id as order_id,
-    customer_id,
-    cast (o.ordered_at as date) as ordered_at,
-    o.store_id,
-            o.subtotal,
-            items.sku 
-          -- {{convert_currency(o.order_total,'eur')}} as order_total_eur,
-         --  {{convert_currency(o.order_total,'yen')}} as order_total_yen,
-           
+{{
+    config(
+        materialized='incremental'
+    )
+}}
 
+with src as 
+(
+    select
+    *
+from {{ ref('stg_orders') }}
+{% if is_incremental() %}
 
-from {{ref('stg_orders')}} as o
-join {{ref('stg_order_items')}} as items
-on order.id=items.order_id
+  -- this filter will only be applied on an incremental run
+  -- (uses >= to include records whose timestamp occurred since the last run of this model)
+  -- (If event_time is NULL or the table is truncated, the condition will always be true and load all records)
+where ordered_at >= (select coalesce(max(ordered_at),'1900-01-01') from {{ this }} )
 
+{% endif %}
+)
+
+select * from src
